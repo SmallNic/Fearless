@@ -1,0 +1,14 @@
+body{
+  background-color:#f2f2f2;
+}
+
+#title {
+  text-align:center;
+  font-style: italic;
+}
+
+#login{
+  border:black 1px solid;
+  padding:10px 0;
+  text-align:center;
+}
