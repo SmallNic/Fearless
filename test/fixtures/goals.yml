@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  details: MyText
+  deadline: 2015-05-09 22:01:05
+  isAchieved: false
+  journey_id: 
+
+two:
+  details: MyText
+  deadline: 2015-05-09 22:01:05
+  isAchieved: false
+  journey_id: 

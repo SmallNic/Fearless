@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fear: MyText
+  details: MyText
+  deadline: 2015-05-09 21:58:53
+  isAchieved: false
+  num_supporters: 1
+  user_id: 
+
+two:
+  fear: MyText
+  details: MyText
+  deadline: 2015-05-09 21:58:53
+  isAchieved: false
+  num_supporters: 1
+  user_id: 
