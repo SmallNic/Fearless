@@ -2,5 +2,26 @@
 
 <p>Fear:<%= @journey.fear %></p>
 <p>Background:<%= @journey.details %></p>
-Goals:
-<%= link_to '+', new_user_journey_goal_path(current_user, @journey), method: :get, class: "addBox"  %>
+
+<h2>Goals:</h2>
+<ul>
+<% @journey.goals.each do |goal| %>
+  <li><%= goal.details %>
+  <%= link_to 'Delete Goal', user_journey_goal_path(current_user, @journey, goal), method: :delete %>
+  <%= link_to 'Edit Goal', edit_user_journey_goal_path(current_user, @journey, goal), method: :get %>
+
+  </li>
+<% end %>
+</ul>
+<%= link_to 'Add Goal', new_user_journey_goal_path(current_user, @journey), method: :get %>
+
+<h2>Posts:</h2>
+<% @journey.posts.each do |post| %>
+  <div class="posts">
+    <%= post.content %>
+    <%= button_to('Edit Post', edit_user_journey_post_path(current_user, @journey, post), method: :get) %>
+    <%= button_to('Delete Post', user_journey_post_path(current_user, @journey, post), method: :delete) %>
+  </div>
+<% end %>
+
+<%= link_to 'Add Post', new_user_journey_post_path(current_user, @journey), method: :get %>

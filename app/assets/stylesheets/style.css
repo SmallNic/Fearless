@@ -95,5 +95,20 @@ body{
 .journey-details {
   font-size:1em;
   text-align: left;
+}
 
+
+/*Journey Show Pages*/
+
+.goalBox {
+  text-align:left;
+}
+
+.posts {
+  width:80%;
+  border: black 1px solid;
+  box-shadow: 2px 2px 2px black;
+  margin:10px 0;
+  padding:10px 5px;
+  font-family:arial;
 }

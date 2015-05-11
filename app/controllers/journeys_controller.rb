@@ -5,8 +5,6 @@ class JourneysController < ApplicationController
   end
 
   def create
-    binding.pry
-
     @journey = Journey.new(journey_params)
     @journey.user_id = current_user.id
     if @journey.save!

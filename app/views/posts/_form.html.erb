@@ -1,0 +1,14 @@
+<div class = "post_form">
+  <!-- <%#= form_for [current_user, @journey, @post], url: {action: "create"} do |f| %> -->
+  <%= form_for user_journey_post_path(current_user, @journey, @post) do |f| %>
+  <p>
+    <%= f.label :content, "Write Post"%><br>
+    <%= f.text_area :content, :size=>"80x10" %>
+  </p>
+
+  <p>
+    <%= f.submit value: "Submit"%>
+  </p>
+
+</div>
+<% end %>

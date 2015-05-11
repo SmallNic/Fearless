@@ -1,7 +1,7 @@
-<h2>Set a New Goal</h2>
+<h2>Edit Goal</h2>
 
 <div class = "goal_form">
-<%= form_for [current_user, @journey, @goal], url: {action: "create"} do |f| %>
+<%= form_for [current_user, @journey, @goal], url: {action: "update"} do |f| %>
   <p>
     <%= f.label :details, "What is the smallest step you can take towards conquering your fear?"%><br>
     <%= f.text_field :details, :size=>"52x6" %>
