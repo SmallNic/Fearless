@@ -175,5 +175,20 @@ body{
 .completed {
   float:right;
   margin: 5px 0px;
+}
+
+
+/*Follow Page*/
+.follow-user {
+  border: black 1px solid;
+  padding: 10px;
+
+
+}
+
+.follow-journey {
+  border: black 1px solid;
+  margin: 10px 0;
+  padding: 10px;
 
 }

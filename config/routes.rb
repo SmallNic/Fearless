@@ -11,13 +11,16 @@ Rails.application.routes.draw do
   #   resources :comments, only: [:show, :edit, :update, :destroy]
 
   resources :users do
-  resources :journeys do
-    resources :goals
-    resources :posts do
-      resources :comments
+    resources :journeys do
+      resources :goals
+      resources :posts, only: [:new, :create, :edit, :update, :destroy] do
+        resources :comments
+      end
     end
   end
-end
+
+
+resources :posts, only: [:index, :show]
 
 resources :follows
 

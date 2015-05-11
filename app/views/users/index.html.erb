@@ -1,0 +1,14 @@
+<h2>All Users</h2>
+
+
+<% @users.each do |user| %>
+  <div class="follow-user">
+    <p>User: <%= user.email %></p>
+    <% user.journeys.each do |journey| %>
+      <div class="follow-journey">
+        <p>Fear: <%= journey.fear %></p>
+        <p>Background: <%= journey.details %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>

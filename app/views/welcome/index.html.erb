@@ -12,11 +12,13 @@
 
   <div class="column" id="col2">
     <h2>Following</h2>
+    <%= link_to 'See all users', users_path %>
+
   </div>
 
   <div class="column" id="col3">
     <h2>Recent Posts</h2>
-      <% @posts.each do |post| %>
+      <% @posts.reverse.each do |post| %>
         <div class="dashboard-post">
           </p><strong><%= post.journey.user.email %></strong></p>
           </p><%= post.content %></p></p>
