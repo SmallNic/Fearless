@@ -1,0 +1,23 @@
+<h2>Edit Your Journey</h2>
+
+<div class = "journey_form">
+<%= form_for [current_user, @journey], url: {action: "update"} do |f| %>
+<!-- Can also be written as
+<%#= form_for user_journeys_path(current_user, @journey), url: {action: "create"} do |f| %> -->
+  <!-- <%# hidden_field_tag "user_id", current_user.id %> -->
+  <p>
+    <%= f.label :fear, "What are you afraid of?"%><br>
+    <%= f.text_field :fear, :size=>"52" %>
+  </p>
+
+  <p>
+    <%= f.label :details, "Please share any relevant details about this fear. For example, when it started, times you've attempted to conquer it, etc."%><br>
+    <%= f.text_area :details, :size=>"52x6" %>
+ </p>
+
+  <p>
+    <%= f.submit value: "Submit"%>
+  </p>
+
+</div>
+<% end %>

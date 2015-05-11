@@ -4,6 +4,7 @@ class WelcomeController < ApplicationController
 
   def index
     @journeys = Journey.where(user_id:current_user.id)
+    @posts = Post.all.slice(-2,2)
   end
-  
+
 end

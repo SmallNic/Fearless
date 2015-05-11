@@ -8,9 +8,11 @@
   </p>
 
   <p>
-    <%= f.label :deadline, "By when?"%><br>
-    <%= f.text_area :deadline, :size=>"52x6" %>
+    <%= f.label :deadline, "How many days do you want to give yourselve to reach this goal?"%><br>
+    <%= f.collection_select :deadline, @timeFrames, :to_i, :to_s, :size=>"52" %>
   </p>
+
+  <%= f.hidden_field :isAchieved, {value:false} %>
 
   <p>
     <%= f.submit value: "Submit"%>

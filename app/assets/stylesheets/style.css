@@ -36,11 +36,18 @@ body{
   height:100%;
 }
 
+.dashboard-post{
+  border: black 1px solid;
+  padding:10px;
+  margin: 10px 5px;
+  text-align:left;
+}
+
 .column {
   float:left;
   margin: 10px;
   height:100%;
-  width:30%;
+  width:31%;
   text-align:center;
 }
 
@@ -111,4 +118,62 @@ body{
   margin:10px 0;
   padding:10px 5px;
   font-family:arial;
+}
+
+#scrap-journey {
+  margin-top:4%;
+  padding:10px;
+  border: black 1px solid;
+  background-color:pink;
+  display:block;
+  width:15%;
+  text-align:center;
+  text-decoration:none;
+  color:black;
+  font-size: 1.5em;
+  border-radius:25px;
+  box-shadow:2px 2px 2px black;
+}
+
+#scrap-journey:hover {
+  background-color:red;
+}
+
+.goalBoxIncomplete {
+  width:60%;
+  padding:30px 10px;
+  margin: 10px 0;
+  border: black 1px solid;
+  box-shadow:2px 2px 2px black;
+  background-color:pink;
+
+}
+
+.goalBoxComplete {
+  width:60%;
+  padding:30px 10px;
+  margin: 10px 0;
+  border: black 1px solid;
+  box-shadow:2px 2px 2px black;
+  background-color:lightblue;
+}
+
+.deadline {
+  width:100%;
+  border-bottom: black 1px solid;
+}
+
+.goal-option{
+  float:right;
+  margin: 0 5px;
+}
+
+.goal {
+  float:left;
+}
+
+.completed {
+  float:right;
+  margin: 5px 0px;
+
 }
