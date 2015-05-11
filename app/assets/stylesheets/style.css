@@ -3,12 +3,97 @@ body{
 }
 
 #title {
+  border-bottom: 2px solid black;
+}
+
+#fearless{
+  font-size:1.5em;
+  text-decoration:none;
+  color:black;
+}
+
+#title h1 {
   text-align:center;
   font-style: italic;
+  font-family: 'Permanent Marker', sans-serif;
+}
+
+#title h2 {
+  text-align:right;
 }
 
 #login{
   border:black 1px solid;
   padding:10px 0;
   text-align:center;
+}
+
+
+
+/*Welcome View*/
+
+#dashboard{
+  height:100%;
+}
+
+.column {
+  float:left;
+  margin: 10px;
+  height:100%;
+  width:30%;
+  text-align:center;
+}
+
+#col1{
+  /*border: black 1px solid;*/
+
+}
+
+
+#col2{
+  border-left: black 1px solid;
+}
+
+#col3{
+  border-left: black 1px solid;
+}
+
+.addBox {
+  width:30px;
+  height:50px;
+  line-height:50px;
+  font-size:2em;
+  margin:0px auto;
+  padding: 20px 30px;
+  border-radius:50%;
+  border: black 1px solid;
+  text-decoration: none;
+  color:black;
+  display:block;
+}
+
+.addBox:hover {
+  color:black;
+  border: red 1px solid;
+  background-color:pink;
+  opacity:0.4;
+}
+
+.journey-box {
+  border: black 1px solid;
+  padding:10px;
+  margin: 10px 0;
+}
+
+.journey-fear {
+  font-size:1.5em;
+  text-align: center;
+  border-bottom: black 1px solid;
+  margin:0;
+}
+
+.journey-details {
+  font-size:1em;
+  text-align: left;
+
 }

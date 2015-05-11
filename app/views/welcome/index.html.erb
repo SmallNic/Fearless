@@ -1,4 +1,21 @@
-<h2> Landing Page </h2>
+<div id="dashboard">
+  <div class="column" id="col1">
+    <h2>My Journeys</h2>
+    <% @journeys.each do |journey| %>
+    <div class="journey-box">
+      <p class="journey-fear"><%= link_to journey.fear, user_journey_path(current_user, journey) %></p>
+      <p class="journey-details"><%= journey.details %></p>
+    </div>
+    <% end %>
+    <%= link_to '+', new_user_journey_path(current_user), method: :get, class: "addBox"  %>
+  </div>
+
+  <div class="column" id="col2">
+    <h2>Following</h2>
+  </div>
 
 
-<h3><%= link_to 'Signout', destroy_user_session_path, :method => :delete %></h3>
+  <div class="column" id="col3">
+    <h2>Recent Posts</h2>
+  </div>
+</div>

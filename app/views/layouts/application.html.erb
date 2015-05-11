@@ -4,10 +4,16 @@
   <title>Fearless</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>  <%= csrf_meta_tags %>
 </head>
 <body>
-<h1 id="title">beFEARLESS</h1>
+<div id="title">
+  <h1><%= link_to 'be  FEARLESS', '/', id: "fearless"  %></h1>
+  <!-- <h1>be  <span id="fearless">FEARLESS</span></h1> -->
+  <% if current_user %>
+    <h2><%= link_to 'Signout', destroy_user_session_path, :method => :delete %></h2>
+  <% end %>
+</div>
 <%= yield %>
 
 </body>

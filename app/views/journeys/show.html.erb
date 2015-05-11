@@ -1,0 +1,6 @@
+<h2>Journey show page</h2>
+
+<p>Fear:<%= @journey.fear %></p>
+<p>Background:<%= @journey.details %></p>
+Goals:
+<%= link_to '+', new_user_journey_goal_path(current_user, @journey), method: :get, class: "addBox"  %>
