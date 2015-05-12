@@ -2,13 +2,34 @@
 
 
 <% @users.each do |user| %>
+
   <div class="follow-user">
     <p>User: <%= user.email %></p>
+
     <% user.journeys.each do |journey| %>
       <div class="follow-journey">
         <p>Fear: <%= journey.fear %></p>
         <p>Background: <%= journey.details %></p>
       </div>
     <% end %>
+
+    <div id="follow_form">
+    <% if current_user.following?(user) %>
+      <!-- Unfollow -->
+      <%= form_for(current_user.active_relationships.find_by(followed_id: user.id),
+                   html: { method: :delete }) do |f| %>
+        <%= f.submit "Unfollow" %>
+      <% end %>
+    <% else %>
+      <!-- Follow -->
+      <%= form_for(current_user.active_relationships.build) do |f| %>
+        <div><%= hidden_field_tag :followed_id, user.id %></div>
+        <%= f.submit "Follow" %>
+      <% end %>
+    <% end %>
+    </div>
+
+
   </div>
+
 <% end %>

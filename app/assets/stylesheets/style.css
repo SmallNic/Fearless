@@ -182,7 +182,8 @@ body{
 .follow-user {
   border: black 1px solid;
   padding: 10px;
-
+  margin: 10px;
+  text-align:left;
 
 }
 
@@ -190,5 +191,4 @@ body{
   border: black 1px solid;
   margin: 10px 0;
   padding: 10px;
-
 }

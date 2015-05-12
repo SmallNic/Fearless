@@ -1,0 +1,25 @@
+<!-- def following
+  @title = "Following"
+  @user  = User.find(params[:id])
+  @users = @user.following.paginate(page: params[:page])
+  render 'show_follow'
+end
+
+def followers
+  @title = "Followers"
+  @user  = User.find(params[:id])
+  @users = @user.followers.paginate(page: params[:page])
+  render 'show_follow'
+end -->
+
+
+<h2><%= @title %></h2>
+<h3>Hi <%= @user.email %></h3>
+<p><%= link_to ("Following #{current_user.following.count}"), following_user_path(current_user) %></p>
+<p><%= link_to ("#{current_user.followers.count} Followers"), followers_user_path(current_user) %></p>
+
+<% if @users %>
+  <% @users.each do |user| %>
+    <p><%= user.email %></p>
+  <% end %>
+<% end %>

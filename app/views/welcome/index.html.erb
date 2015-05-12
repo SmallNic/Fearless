@@ -12,12 +12,25 @@
 
   <div class="column" id="col2">
     <h2>Following</h2>
+    <p><%= link_to ("Following #{current_user.following.count}"), following_user_path(current_user) %></p>
+    <p><%= link_to ("#{current_user.followers.count} Followers"), followers_user_path(current_user) %></p>
+    <% current_user.following.each do |followed| %>
+      <div class="follow-user">
+        <%= followed.email %>
+        <% followed.journeys.each do |journey| %>
+          <div class="follow-journey">
+            <p>Fear: <%= journey.fear %></p>
+            <p>Background: <%= journey.details %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
     <%= link_to 'See all users', users_path %>
-
   </div>
 
   <div class="column" id="col3">
     <h2>Recent Posts</h2>
+    <% if @posts %>
       <% @posts.reverse.each do |post| %>
         <div class="dashboard-post">
           </p><strong><%= post.journey.user.email %></strong></p>
@@ -25,7 +38,8 @@
           </p>Date posted: <%= post.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %></p>
         </div>
       <% end %>
-      <%= link_to 'See all posts', posts_path %>
+    <% end %>
+    <%= link_to 'See all posts', posts_path %>
   </div>
 
 </div>

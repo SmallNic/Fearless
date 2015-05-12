@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   #   resources :comments, only: [:show, :edit, :update, :destroy]
 
   resources :users do
+    member do
+      get :following, :followers
+    end
     resources :journeys do
       resources :goals
       resources :posts, only: [:new, :create, :edit, :update, :destroy] do
@@ -20,8 +23,7 @@ Rails.application.routes.draw do
   end
 
 
-resources :posts, only: [:index, :show]
+  resources :posts, only: [:index, :show]
 
-resources :follows
-
+  resources :relationships, only: [:create, :destroy]
 end
