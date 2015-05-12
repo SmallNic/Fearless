@@ -1,0 +1,9 @@
+<h2>User Show Page</h2>
+<p><%= @user.alias %>'s Journey's</p>
+
+<% @user.journeys.all.each do |journey| %>
+
+  <p>Fear: <%= link_to journey.fear, user_journey_path(@user, journey) %></p>
+  <p>Background: <%= journey.details %></p>
+  <hr>
+<% end %>

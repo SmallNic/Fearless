@@ -1,15 +1,17 @@
 # Users
-User.create!(email: "nas231@nyu.edu",
+User.create!(alias: "nic",
+             email: "nas231@nyu.edu",
              password:              "nicholas",
              password_confirmation: "nicholas",
              created_at: Time.zone.now)
 
 
 10.times do |n|
-  email = "nic#{n}@nyu.edu"
+  email = "email#{n+1}@gmail.com"
   password = "nicholas"
-  User.create!(email: email,
-              password:              password,
+  newUser = User.create!(alias: Faker::Name.name,
+              email: email,
+              password: password,
               password_confirmation: password,
               created_at: Time.zone.now)
 end
@@ -21,6 +23,22 @@ User.all.each do |user|
   journey = Journey.create!(fear: fear, details:details)
   journey.user_id = user.id
   journey.save
+end
+
+#Goals
+Journey.all.each do |journey|
+  details = Faker::Lorem.sentence(2)
+  goal = Goal.create!(details:details)
+  goal.journey_id = journey.id
+  goal.save
+end
+
+#Posts
+Journey.all.each do |journey|
+  content = Faker::Lorem.sentence(4)
+  post = Post.create!(content:content)
+  post.journey_id = post.id
+  post.save
 end
 
 # # Following relationships

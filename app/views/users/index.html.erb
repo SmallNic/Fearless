@@ -4,7 +4,8 @@
 <% @users.each do |user| %>
 
   <div class="follow-user">
-    <p>User: <%= user.email %></p>
+    <%= gravatar_for(user) %>
+    <p><%= user.alias %>'s Journey</p>
 
     <% user.journeys.each do |journey| %>
       <div class="follow-journey">

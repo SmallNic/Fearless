@@ -4,6 +4,10 @@ class UsersController < ApplicationController
     @users = User.where.not(id:current_user.id)
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def following
     # binding.pry
     @title = "Following"

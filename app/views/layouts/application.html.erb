@@ -8,13 +8,27 @@
 </head>
 <body>
 <div id="title">
-  <h1><%= link_to 'be  FEARLESS', '/', id: "fearless"  %></h1>
-  <!-- <h1>be  <span id="fearless">FEARLESS</span></h1> -->
-  <% if current_user %>
-    <h2><%= link_to 'Signout', destroy_user_session_path, :method => :delete %></h2>
-  <% end %>
-</div>
-<%= yield %>
 
+  <div id="gravatar-alias">
+    <% if current_user %>
+      <%= gravatar_for(current_user) %>
+      <p><%= current_user.alias %></p>
+    <% end %>
+  </div>
+
+  <div id="logo">
+    <h1><%= link_to 'be  FEARLESS', '/', id: "fearless"  %></h1>
+  </div>
+
+  <div id="signout">
+    <% if current_user %>
+      <h2><%= link_to 'Signout', destroy_user_session_path, :method => :delete %></h2>
+    <% end %>
+  </div>
+
+</div>
+<div id="main">
+<%= yield %>
+</div>
 </body>
 </html>

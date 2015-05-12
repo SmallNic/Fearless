@@ -1,44 +1,59 @@
 <div id="dashboard">
+
+  <!--               My Journey                      -->
   <div class="column" id="col1">
     <h2>My Journeys</h2>
+
     <% @journeys.each do |journey| %>
-    <div class="journey-box">
-      <p class="journey-fear"><%= link_to journey.fear, user_journey_path(current_user, journey) %></p>
-      <p class="journey-details"><%= journey.details %></p>
-    </div>
+      <div class="journey-box">
+        <p class="journey-fear"><%= link_to journey.fear, user_journey_path(current_user, journey) %></p>
+        <p class="journey-details"><%= journey.details %></p>
+      </div>
     <% end %>
+
     <%= link_to '+', new_user_journey_path(current_user), method: :get, class: "addBox"  %>
   </div>
 
+  <!--               People I'm Following                   -->
   <div class="column" id="col2">
     <h2>Following</h2>
-    <p><%= link_to ("Following #{current_user.following.count}"), following_user_path(current_user) %></p>
-    <p><%= link_to ("#{current_user.followers.count} Followers"), followers_user_path(current_user) %></p>
-    <% current_user.following.each do |followed| %>
+    <%= link_to ("Following #{current_user.following.count} User(s)"), following_user_path(current_user) %> |
+    <%= link_to ("#{current_user.followers.count} Follower(s)"), followers_user_path(current_user) %>
+
+    <% current_user.following.each do |followed_user| %>
       <div class="follow-user">
-        <%= followed.email %>
-        <% followed.journeys.each do |journey| %>
+        <%= gravatar_for(followed_user) %>
+        <%= link_to followed_user.alias, user_path(followed_user) %>
+
+        <% followed_user.journeys.each do |journey| %>
           <div class="follow-journey">
             <p>Fear: <%= journey.fear %></p>
-            <p>Background: <%= journey.details %></p>
+            <p>Last Post: <%= journey.posts.all.last.content %></p>
           </div>
         <% end %>
+
       </div>
     <% end %>
+
     <%= link_to 'See all users', users_path %>
   </div>
 
+
+  <!--                Recent Posts                    -->
   <div class="column" id="col3">
     <h2>Recent Posts</h2>
+
     <% if @posts %>
       <% @posts.reverse.each do |post| %>
         <div class="dashboard-post">
-          </p><strong><%= post.journey.user.email %></strong></p>
-          </p><%= post.content %></p></p>
-          </p>Date posted: <%= post.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %></p>
+          <%= gravatar_for(post.journey.user) %>
+          <p><strong><%= post.journey.user.alias %></strong></p>
+          <p><%= post.content %></p></p>
+          <p>Date posted: <%= post.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %></p>
         </div>
       <% end %>
     <% end %>
+
     <%= link_to 'See all posts', posts_path %>
   </div>
 

@@ -1,7 +1,7 @@
-<h2>Journey show page</h2>
+<h2><%= @user.alias.capitalize %>'s Journey show page</h2>
 
-<p>Fear:<%= @journey.fear %></p>
-<p>Background:<%= @journey.details %></p>
+<p>Fear: <%= @journey.fear %></p>
+<p>Background: <%= @journey.details %></p>
 <%= link_to 'Edit Journey', edit_user_journey_path(current_user, @journey), method: :get %>
 
 <h2>Goals:</h2>
@@ -11,9 +11,11 @@
   <% else %>
     <div class ="goalBoxIncomplete">
   <% end %>
-  
+
     <div class="deadline">
-      Deadline: <%= goal.deadline.localtime.strftime("%B %d, %Y %I:%M %p") %>
+      <% if (goal.deadline) %>
+        Deadline: <%= goal.deadline.localtime.strftime("%B %d, %Y %I:%M %p") %>
+      <% end %>
       <%= link_to 'Remove Goal', user_journey_goal_path(current_user, @journey, goal), method: :delete, class: "goal-option" %>
       <%= link_to 'Edit Goal', edit_user_journey_goal_path(current_user, @journey, goal), method: :get, class: "goal-option" %>
     </div>

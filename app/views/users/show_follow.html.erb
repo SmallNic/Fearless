@@ -12,14 +12,14 @@ def followers
   render 'show_follow'
 end -->
 
-
-<h2><%= @title %></h2>
-<h3>Hi <%= @user.email %></h3>
-<p><%= link_to ("Following #{current_user.following.count}"), following_user_path(current_user) %></p>
-<p><%= link_to ("#{current_user.followers.count} Followers"), followers_user_path(current_user) %></p>
+<h2><%= @title %>:</h2>
+<!-- <p><%#= link_to ("Following #{current_user.following.count}"), following_user_path(current_user) %></p>
+<p><%#= link_to ("#{current_user.followers.count} Followers"), followers_user_path(current_user) %></p> -->
 
 <% if @users %>
+  <ul>
   <% @users.each do |user| %>
-    <p><%= user.email %></p>
+    <li><%= link_to user.alias, user_path(user) %></li>
   <% end %>
+  </ul>
 <% end %>

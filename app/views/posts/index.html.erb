@@ -1,7 +1,8 @@
 <h2>All Posts</h2>
 
 <% @posts.reverse.each do |post| %>
-  <p><%= post.journey.user.email %><p>
+  <%= gravatar_for(post.journey.user) %>
+  <p><%= post.journey.user.alias %></p>
   <p><%= post.content %></p>
   </p>Date posted: <%= post.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %></p>
 <% end %>

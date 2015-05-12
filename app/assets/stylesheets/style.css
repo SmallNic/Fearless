@@ -2,14 +2,33 @@ body{
   background-color:#f2f2f2;
 }
 
+#main{
+  clear:both;
+}
+
 #title {
   border-bottom: 2px solid black;
+  height:130px;
 }
 
 #fearless{
   font-size:1.5em;
   text-decoration:none;
   color:black;
+}
+
+#gravatar-alias {
+  float:left;
+}
+
+#logo{
+  display:inline-block;
+  text-align: center;
+  margin-left: 375px;
+}
+
+#signout {
+  float:right;
 }
 
 #title h1 {
