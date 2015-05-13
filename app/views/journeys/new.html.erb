@@ -5,6 +5,9 @@
 <!-- Can also be written as
 <%#= form_for user_journeys_path(current_user, @journey), url: {action: "create"} do |f| %> -->
   <!-- <%# hidden_field_tag "user_id", current_user.id %> -->
+  <%= f.hidden_field :num_supporters, {value:0} %>
+
+
   <p>
     <%= f.label :fear, "What are you afraid of?"%><br>
     <%= f.text_field :fear, :size=>"52" %>

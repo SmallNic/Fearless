@@ -1,12 +1,25 @@
 class JourneysController < ApplicationController
 
+  load_and_authorize_resource #:except => [:create]
+
+  def show
+    # @journey = Journey.find(params[:id])
+    # authorize! :read, @journey
+
+    @user = User.find(@journey.user_id)
+  end
+
   def new
-    @journey = Journey.new
+    # @journey = Journey.new
+    # authorize! :create, @journey
   end
 
   def create
-    @journey = Journey.new(journey_params)
+    binding.pry
+    # @journey = Journey.new(journey_params)
     @journey.user_id = current_user.id
+    # authorize! :create, @journey
+
     if @journey.save!
       redirect_to(user_journey_path(current_user, @journey))
     else
@@ -14,23 +27,25 @@ class JourneysController < ApplicationController
     end
   end
 
-  def show
-    @journey = Journey.find(params[:id])
-    @user = User.find(@journey.user_id)
-  end
-
   def edit
-    @journey = Journey.find(params[:id])
+    # @journey = Journey.find(params[:id])
+    # authorize! :update, @journey
+
   end
 
   def update
-    @journey = Journey.find(params[:id])
+    binding.pry
+    # @journey = Journey.find(params[:id])
+    # authorize! :update, @journey
+
     @journey.update!(journey_params)
     redirect_to(user_journey_path(current_user, @journey))
   end
 
   def destroy
-    @journey = Journey.find(params[:id])
+    # @journey = Journey.find(params[:id])
+    # authorize! :destroy, @journey
+
     @journey.destroy
     redirect_to('/')
   end

@@ -12,7 +12,7 @@
   <div id="gravatar-alias">
     <% if current_user %>
       <%= gravatar_for(current_user) %>
-      <p><%= current_user.alias %></p>
+      <p id="current-user-alias"><%= current_user.alias %></p>
     <% end %>
   </div>
 

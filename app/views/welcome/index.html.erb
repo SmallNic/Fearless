@@ -50,6 +50,27 @@
           <p><strong><%= post.journey.user.alias %></strong></p>
           <p><%= post.content %></p></p>
           <p>Date posted: <%= post.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %></p>
+
+
+
+          <% if current_user.following?(post.journey.user) %>
+            <!-- Unfollow -->
+            <%= form_for(current_user.active_relationships.find_by(followed_id: post.journey.user.id),
+                         html: { method: :delete }) do |f| %>
+              <%= f.submit "Unfollow" %>
+            <% end %>
+          <% else %>
+            <!-- Follow -->
+            <%= form_for(current_user.active_relationships.build) do |f| %>
+              <div><%= hidden_field_tag :followed_id, post.journey.user.id %></div>
+              <%= f.submit "Follow" %>
+            <% end %>
+          <% end %>
+          <button class="support-button">Support</button>
+
+
+
+
         </div>
       <% end %>
     <% end %>
