@@ -1,0 +1,20 @@
+<% if current_user %>
+
+  <div id="title">
+
+    <!-- <div id="gravatar-alias">
+        <%#= gravatar_for(current_user) %>
+        <p id="current-user-alias"><%= current_user.alias %></p>
+    </div> -->
+
+      <h1><%= link_to "be FEARLESS", '/', id: "fearless"  %></h1>
+
+    <!-- <div id="signout">
+      <%# if current_user %>
+        <h2><%#= link_to 'Signout', destroy_user_session_path, :method => :delete %></h2>
+      <%# end %>
+    </div> -->
+
+  </div>
+
+<% end %>

@@ -1,66 +1,75 @@
-<h2><%= @user.alias.capitalize.split.first %>'s Journey</h2>
-<button class="support-button">Support</button>
-<% if @journey.num_supporters %>
-  <p><%= @journey.num_supporters %> people are supporting you.</p>
-<% else %>
-  <p>0 people are supporting you.</p>
-<% end %>
+<body id="welcome-body">
+<%= render "shared/header" %>
 
-<p>Fear: <%= @journey.fear %></p>
-<p>Background: <%= @journey.details %></p>
+<div class="row" id="journey-show">
 
-<% if can? :update, @journey %>
-  <%= link_to 'Edit Journey', edit_user_journey_path(current_user, @journey), method: :get %>
-<% end %>
+  <%= gravatar_for(@user, 100) %>
 
-<h2>Goals:</h2>
-<% @journey.goals.each do |goal| %>
-  <% if goal.isAchieved %>
-    <div class ="goalBoxComplete">
+  <h2><%= @user.alias.capitalize %>'s Journey</h2>
+  <% if @user != current_user %>
+    <button class="support-button">Support</button>
+  <% end %>
+  <% if @journey.num_supporters %>
+    <p><%= @journey.num_supporters %> people are supporting you.</p>
   <% else %>
-    <div class ="goalBoxIncomplete">
+    <p>0 people are supporting you.</p>
   <% end %>
 
-    <div class="deadline">
-      Deadline:
-      <% if (goal.deadline) %>
-        <%= goal.deadline.localtime.strftime("%B %d, %Y %I:%M %p") %>
-      <% end %>
+  <p>Fear: <%= @journey.fear %></p>
+  <p>Background: <%= @journey.details %></p>
+
+  <% if can? :update, @journey %>
+    <%= link_to 'Edit Journey', edit_user_journey_path(current_user, @journey), method: :get %>
+  <% end %>
+
+  <h2>Goals:</h2>
+  <% @journey.goals.each do |goal| %>
+    <% if goal.isAchieved %>
+      <div class ="goalBoxComplete">
+    <% else %>
+      <div class ="goalBoxIncomplete">
+    <% end %>
+
+      <div class="deadline">
+        Deadline:
+        <% if (goal.deadline) %>
+          <%= goal.deadline.localtime.strftime("%B %d, %Y %I:%M %p") %>
+        <% end %>
+        <% if can? :update, goal %>
+          <%= link_to 'Remove Goal', user_journey_goal_path(current_user, @journey, goal), method: :delete, class: "goal-option" %>
+          <%= link_to 'Edit Goal', edit_user_journey_goal_path(current_user, @journey, goal), method: :get, class: "goal-option" %>
+        <% end %>
+      </div>
+
+      <div class="goal"><%= goal.details %></div>
       <% if can? :update, goal %>
-        <%= link_to 'Remove Goal', user_journey_goal_path(current_user, @journey, goal), method: :delete, class: "goal-option" %>
-        <%= link_to 'Edit Goal', edit_user_journey_goal_path(current_user, @journey, goal), method: :get, class: "goal-option" %>
+        <div class="completed"><button type="button" class="completeButton">Mark Completed</button></div>
       <% end %>
     </div>
+  <% end %>
 
-    <div class="goal"><%= goal.details %></div>
-    <% if can? :update, goal %>
-      <div class="completed"><button type="button" class="completeButton">Mark Completed</button></div>
-    <% end %>
-  </div>
-<% end %>
-
-<% if current_user.id == @user.id %>
-<%= link_to 'Add Goal', new_user_journey_goal_path(current_user, @journey), method: :get %>
-<% end %>
+  <% if current_user.id == @user.id %>
+  <%= link_to 'Add Goal', new_user_journey_goal_path(current_user, @journey), method: :get %>
+  <% end %>
 
 
 
-<h2>Posts:</h2>
-<% @journey.posts.each do |post| %>
-  <div class="posts">
-    <%= post.content %>
-    <% if can? :update, post %>
-      <%= button_to('Edit Post', edit_user_journey_post_path(current_user, @journey, post), method: :get) %>
-      <%= button_to('Delete Post', user_journey_post_path(current_user, @journey, post), method: :delete) %>
-    <% end %>
-  </div>
-<% end %>
+  <h2>Posts:</h2>
+  <% @journey.posts.each do |post| %>
+    <div class="posts">
+      <%= post.content %>
+      <% if can? :update, post %>
+        <%= button_to('Edit Post', edit_user_journey_post_path(current_user, @journey, post), method: :get) %>
+        <%= button_to('Delete Post', user_journey_post_path(current_user, @journey, post), method: :delete) %>
+      <% end %>
+    </div>
+  <% end %>
 
-<% if can? :create_post, @user %>
-  <%= link_to 'Add Post', new_user_journey_post_path(current_user, @journey), method: :get %>
-<% end %>
+  <% if can? :create_post, @user %>
+    <%= link_to 'Add Post', new_user_journey_post_path(current_user, @journey), method: :get %>
+  <% end %>
 
 
-<% if can? :destroy, @journey %>
-  <%= link_to 'Scrap Entire Journey', user_journey_path(current_user, @journey), method: :delete, id: "scrap-journey" %>
-<% end %>
+  <% if can? :destroy, @journey %>
+    <%= link_to 'Scrap Entire Journey', user_journey_path(current_user, @journey), method: :delete, id: "scrap-journey" %>
+  <% end %>

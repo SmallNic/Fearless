@@ -1,81 +1,113 @@
-<div id="dashboard">
+<body id="welcome-body">
+<%= render "shared/header" %>
+
+<div class="row" id="dashboard">
 
   <!--               My Journey                      -->
-  <div class="column" id="col1">
-    <h2>My Journeys</h2>
+  <div class="column column-3" id="journey-col">
+    <h2><%= link_to "My Journeys", user_journeys_path(current_user) %></h2>
+    <p class="center-me"><%= link_to ("#{current_user.followers.count} Follower(s)"), followers_user_path(current_user) %></p>
 
     <% @journeys.each do |journey| %>
       <div class="journey-box">
-        <p class="journey-fear"><%= link_to journey.fear, user_journey_path(current_user, journey) %></p>
-        <p class="journey-details"><%= journey.details %></p>
+        <p class="fear-journey">My Fear: <%= link_to journey.fear, user_journey_path(current_user, journey) %></p>
+        <p class="fear-post">Last Post: goal goal goal</p>
       </div>
     <% end %>
 
-    <%= link_to '+', new_user_journey_path(current_user), method: :get, class: "addBox"  %>
+    <%= link_to 'Start A New Journey', new_user_journey_path(current_user), method: :get, class: "addBox"  %>
   </div>
 
   <!--               People I'm Following                   -->
-  <div class="column" id="col2">
-    <h2>Following</h2>
-    <%= link_to ("Following #{current_user.following.count} User(s)"), following_user_path(current_user) %> |
-    <%= link_to ("#{current_user.followers.count} Follower(s)"), followers_user_path(current_user) %>
+  <div  class="column column-6" id="following-col">
+    <h2><%= link_to "Following (#{current_user.following.count} User(s))", following_user_path(current_user) %></h2>
+
+    <!-- <%#= link_to ("Following #{current_user.following.count} User(s)"), following_user_path(current_user) %> | -->
 
     <% current_user.following.each do |followed_user| %>
-      <div class="follow-user">
-        <%= gravatar_for(followed_user) %>
-        <%= link_to followed_user.alias, user_path(followed_user) %>
+      <% followed_user.journeys.each do |journey| %>
 
-        <% followed_user.journeys.each do |journey| %>
-          <div class="follow-journey">
-            <p>Fear: <%= journey.fear %></p>
-            <p>Last Post: <%= journey.posts.all.last.content %></p>
+        <div class="follow-box">
+          <div class="row">
+            <div class = "column column-2">
+              <%= gravatar_for(followed_user, 50) %>
+            </div>
+            <div class = "column column-9">
+              <div class="row">
+                <%= link_to followed_user.alias, user_path(followed_user) %>
+              </div>
+              <div class="row">
+                <p>Fear: <%= journey.fear %></p>
+              </div>
+            </div>
           </div>
-        <% end %>
+          <div class="row">
+            <p><%= journey.posts.all.last.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %></p>
+          </div>
 
-      </div>
+          <div class="row post">
+            <p><%= journey.posts.all.last.content %></p>
+          </div>
+
+        </div>
+        <% end %>
     <% end %>
 
-    <%= link_to 'See all users', users_path %>
+    <p class="center-me"><%= link_to 'See all users', users_path %></p>
   </div>
 
-
   <!--                Recent Posts                    -->
-  <div class="column" id="col3">
+  <div class="column column-3" id="post-col">
     <h2>Recent Posts</h2>
 
     <% if @posts %>
       <% @posts.reverse.each do |post| %>
         <div class="dashboard-post">
-          <%= gravatar_for(post.journey.user) %>
-          <p><strong><%= post.journey.user.alias %></strong></p>
-          <p><%= post.content %></p></p>
-          <p>Date posted: <%= post.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %></p>
-
-
-
-          <% if current_user.following?(post.journey.user) %>
-            <!-- Unfollow -->
-            <%= form_for(current_user.active_relationships.find_by(followed_id: post.journey.user.id),
-                         html: { method: :delete }) do |f| %>
-              <%= f.submit "Unfollow" %>
-            <% end %>
-          <% else %>
-            <!-- Follow -->
-            <%= form_for(current_user.active_relationships.build) do |f| %>
-              <div><%= hidden_field_tag :followed_id, post.journey.user.id %></div>
-              <%= f.submit "Follow" %>
-            <% end %>
-          <% end %>
-          <button class="support-button">Support</button>
-
-
-
-
+          <!-- style="border:1px solid black;" -->
+          <div class="row">
+            <div class = "column column-3">
+              <%= gravatar_for(post.journey.user, 50) %>
+            </div>
+            <div class = "column column-8">
+              <div class="row">
+                <%= post.journey.user.alias.capitalize %>
+              </div>
+              <div class="row">
+                Fear: <%= post.journey.fear.capitalize %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <%= post.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %>
+          </div>
+          <div class="row post">
+            <%= post.content %>
+          </div>
+          <div class="row">
+            <div class = "column column-3">
+              <% if current_user.following?(post.journey.user) %>
+                <!-- Unfollow -->
+                <%= form_for(current_user.active_relationships.find_by(followed_id: post.journey.user.id),
+                             html: { method: :delete }) do |f| %>
+                  <%= f.submit "Unfollow" %>
+                <% end %>
+              <% else %>
+                <!-- Follow -->
+                <%= form_for(current_user.active_relationships.build) do |f| %>
+                  <div><%= hidden_field_tag :followed_id, post.journey.user.id %></div>
+                  <%= f.submit "Follow" %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class = "column column-3">
+              <button class="support-button">Support</button>
+            </div>
+          </div>
         </div>
       <% end %>
     <% end %>
 
-    <%= link_to 'See all posts', posts_path %>
+    <p class="center-me"><%= link_to 'See all posts', posts_path %></p>
   </div>
 
 </div>
