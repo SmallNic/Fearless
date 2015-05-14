@@ -4,8 +4,15 @@
 
   <% current_user.journeys.each do |journey| %>
     <div class="journey-box">
-      <p class="fear-journey">My Fear: <%= link_to journey.fear, user_journey_path(current_user, journey) %></p>
-      <p class="fear-post">Last Post: goal goal goal</p>
+      <div class="row">
+        My Fear: <%= link_to journey.fear, user_journey_path(current_user, journey) %>
+      </div>
+      <div class="row">
+        Last Post: <%= journey.posts.last.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %>
+      </div>
+      <div class="row">
+        <div class="post"><%= journey.posts.last.content %></div>
+      </div>
     </div>
   <% end %>
 

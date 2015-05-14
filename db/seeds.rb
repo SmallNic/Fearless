@@ -1,5 +1,10 @@
+fears = ["Death","Public speaking","Heights","Darkness","Intimacy", "Failure",
+        "Rejection","Spiders","Success","Judgment","Embarrassment","Abandonment","Loss","Flying","Dogs","Dentists","Snakes","Needles","Being alone", "Clowns", "Change", "Germs","Crowds", "Thunder", "Hospitals", "Birds","Ghosts", "Bees", "Small spaces"]
+
+
+
 # Users
-User.create!(alias: "nic",
+User.create!(alias: "Nic",
              email: "nas231@nyu.edu",
              password:              "nicholas",
              password_confirmation: "nicholas",
@@ -9,7 +14,7 @@ User.create!(alias: "nic",
 10.times do |n|
   email = "email#{n+1}@gmail.com"
   password = "nicholas"
-  newUser = User.create!(alias: Faker::Name.name,
+  newUser = User.create!(alias: Faker::Name.first_name,
               email: email,
               password: password,
               password_confirmation: password,
@@ -18,7 +23,7 @@ end
 
 # Journeys
 User.all.each do |user|
-  fear = Faker::Lorem.word
+  fear = fears.sample
   details = Faker::Lorem.sentence(3)
   journey = Journey.create!(fear: fear, details:details)
   journey.user_id = user.id
@@ -28,7 +33,7 @@ end
 #Goals
 Journey.all.each do |journey|
   details = Faker::Lorem.sentence(2)
-  goal = Goal.create!(details:details)
+  goal = Goal.create!(details:details, isAchieved:false)
   goal.journey_id = journey.id
   goal.save
 end
@@ -37,7 +42,11 @@ end
 Journey.all.each do |journey|
   content = Faker::Lorem.sentence(4)
   post = Post.create!(content:content)
-  post.journey_id = post.id
+  post.journey_id = journey.id
+  post.save
+  content = Faker::Lorem.sentence(4)
+  post = Post.create!(content:content)
+  post.journey_id = journey.id
   post.save
 end
 

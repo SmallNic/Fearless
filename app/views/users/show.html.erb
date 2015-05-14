@@ -8,7 +8,7 @@
 
 
   <div  class="column column-6">
-    <h2><%= @user.alias %>'s Journeys</h2>
+    <h2><%= @user.alias.capitalize %>'s Journeys</h2>
 
     <% @user.journeys.all.each do |journey| %>
       <div class="journey-box">

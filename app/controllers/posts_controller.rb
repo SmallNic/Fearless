@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     # @posts = Post.all
     respond_to do |format|
       format.html {render :index}
-      format.json {render json: @posts } #currently only supports json but we want it to support html using suffixes
+      format.json {render json: @posts }
     end
   end
 
@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
     journey = Journey.find(params[:journey_id])
     @post.journey_id = journey.id
-    binding.pry
+
     if @post.save!
       redirect_to(user_journey_path(current_user, journey))
     else

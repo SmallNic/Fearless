@@ -50,41 +50,63 @@
       <% if goal.isAchieved %>
         <div class ="goalBoxComplete">
       <% else %>
-        <div class ="goalBoxIncomplete">
+        <div class ="goalBoxIncomplete" id="goalBox<%= goal.id %>">
       <% end %>
 
-        <div class="deadline">
-          Deadline:
-          <% if (goal.deadline) %>
-            <%= goal.deadline.localtime.strftime("%B %d, %Y %I:%M %p") %>
-          <% end %>
+        <div class="row deadline">
+          <div class = "column column-5">
+            Deadline:
+            <% if (goal.deadline) %>
+                <%= goal.deadline.localtime.strftime("%B %d, %Y %I:%M %p") %>
+            <% end %>
+          </div>
           <% if can? :update, goal %>
-            <%= link_to 'Remove Goal', user_journey_goal_path(current_user, @journey, goal), method: :delete, class: "goal-option" %>
-            <%= link_to 'Edit Goal', edit_user_journey_goal_path(current_user, @journey, goal), method: :get, class: "goal-option" %>
+            <div class="completed column column-3">
+              <% if !goal.isAchieved %>
+                <button type="button" class="completeButton" id="<%= goal.id %>">Mark Complete</button>
+              <% end %>
+            </div>
+            <div class = "column column-2">
+              <%= button_to('Remove Goal', user_journey_goal_path(current_user, @journey, goal), method: :delete) %>
+            </div>
+            <div class = "column column-2">
+              <%= button_to('Edit Goal', edit_user_journey_goal_path(current_user, @journey, goal), method: :get) %>
+            </div>
           <% end %>
         </div>
+        <div class="row goalDetails">
+            <%= goal.details %>
+        </div>
 
-        <div class="goal"><%= goal.details %></div>
-        <% if can? :update, goal %>
-          <div class="completed"><button type="button" class="completeButton">Mark Completed</button></div>
-        <% end %>
       </div>
     <% end %>
 
-    <% if current_user.id == @user.id %>
-    <%= link_to 'Add Goal', new_user_journey_goal_path(current_user, @journey), method: :get %>
-    <% end %>
-
+    <div class="row">
+      <% if current_user.id == @user.id %>
+      <%= link_to 'Add Goal', new_user_journey_goal_path(current_user, @journey), method: :get %>
+      <% end %>
+    </div>
 
 
     <h2>Posts:</h2>
     <% @journey.posts.each do |post| %>
       <div class="postBox">
-        <%= post.content %>
-        <% if can? :update, post %>
-          <%= button_to('Edit Post', edit_user_journey_post_path(current_user, @journey, post), method: :get) %>
-          <%= button_to('Delete Post', user_journey_post_path(current_user, @journey, post), method: :delete) %>
-        <% end %>
+        <div class = "row">
+          </p>Date posted: <%= post.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %></p>
+        </div>
+        <div class = "row post">
+          <%= post.content %>
+        </div>
+        <div class = "row">
+          <% if can? :update, post %>
+            <div class = "column column-2">
+              <%= button_to('Edit Post', edit_user_journey_post_path(current_user, @journey, post), method: :get) %>
+            </div>
+            <div class = "column column-2">
+              <%= button_to('Delete Post', user_journey_post_path(current_user, @journey, post), method: :delete) %>
+            </div>
+          <% end %>
+        </div>
       </div>
     <% end %>
 

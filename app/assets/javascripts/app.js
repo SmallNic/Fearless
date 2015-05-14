@@ -1,11 +1,68 @@
 $(document).ready(function(){
 
-  $("#scrap-journey").on("click", function(){
-    confirm('Are you sure you want to stop this journey?')
+  var Goal = function(id, journeyID, userID, deadline ){
+    this.id = id
+    this.journeyID = journeyID
+    this.userID = userID
+    this.deadline = deadline
+  }
+
+  journeys = []
+
+  $.ajax({
+    type: 'GET',
+    dataType: 'json',
+    url: "/journeys"
+  }).done(function( journeyResponse ) {
+    for (var i=0; i < journeyResponse.length; i++){
+      journeys.push(journeyResponse[i])
+    }
+  }).fail(function(){
+    console.log("failure")
   })
 
-  $(".completeButton").on("click", function(){
-    console.log("hi, you just clicked on the Complete button")
+  var goalBoxComplete = $(".goalBoxComplete")
+  var goalBoxIncomplete = $(".goalBoxIncomplete")
+
+  $(".completeButton").on("click", function( event ){
+    event.preventDefault()
+    id = $(this).attr("id")
+    $.ajax({
+      type: 'GET',
+      dataType: 'json',
+      url: "/goals/" + id
+    }).done(function( response ) {
+      // console.log("response", response)
+      var userID;
+      for (var i=0; i < journeys.length; i++){
+        if (response.journey_id == journeys[i].id){
+          userID = journeys[i].user_id
+        }
+      }
+      goal = new Goal(response.id, response.journey_id, userID, response.deadline)
+      console.log("goal:", goal)
+      updateGoalStatus(goal)
+    }).fail(function(){
+      console.log("failure")
+    })
+  })
+
+  var updateGoalStatus = function( goal){
+    $("#goalBox"+id+"").css("background-color","#7AC376")
+    $.ajax({
+      type: 'PUT',
+      dataType: 'json',
+      data: {goal:{isAchieved: true, deadline:goal.deadline}},
+      url: "/users/" + goal.userID +"/journeys/" + goal.journeyID + "/goals/" + goal.id
+    }).done(function() {
+      console.log("success")
+    }).fail(function(){
+      console.log("failure")
+    })
+  }
+
+  $("#scrap-journey").on("click", function(){
+    confirm('Are you sure you want to stop this journey?')
   })
 
   $(".support-button").on("click", function(){
@@ -17,68 +74,11 @@ $(document).ready(function(){
       dataType: "json",
       data: supporter,
       url: "http://localhost:3000/journeys/"
-      //url: "/cards" ***this will always go to the server's cards index page***
     }).done(function(){
       console.log("success")
     }).fail(function(){
       console.log("failure")
     })
   })
-
-
-  centerColumn = $("#center-col")
-  rightColumn = $("#post-col")
-  allUsers = $("#allUsers")
-  allUsers.on("click", function(event){
-    console.log("hi, you just clicked on the allUsers button")
-  })
-
-  allPosts = $("#allPosts")
-  allPosts.on("click", function(event){
-    console.log("hi, you just clicked on the allPosts button")
-    $.ajax({
-      type: 'GET',
-      dataType: 'json',
-      url: "/posts"
-    }).done(function(response) {
-      console.log("response", response)
-      showAllPosts(response)
-    }).fail(function( response ){
-      console.log("failure")
-    })
-  })
-
-  function showAllPosts ( response ){
-
-
-
-  }
-
-  // centerColumn.css("background-color","red")
-
-  // card.createInRails()
-  //
-  //
-  // var Card = function( id, description, completed ){
-  //   this.id = id
-  //   this.description = description
-  //   this.completed = completed
-  // }
-  //
-  // Card.prototype = {
-  //   createInRails:function(){
-  //     $.ajax({
-  //       type:"POST",
-  //       dataType: "json",
-  //       data: {card:{description: this.description, complete: this.completed}},
-  //       url: "http://localhost:3000/cards"
-  //       //url: "/cards" ***this will always go to the server's cards index page***
-  //     }).done(function(){
-  //       trilloModel.fetchCards()
-  //     }).fail(function(){
-  //       console.log("saving to rails API failed")
-  //     })
-  //   }
-  // }
 
 })

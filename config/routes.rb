@@ -14,15 +14,16 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
-    resources :journeys do
-      resources :goals
+    resources :journeys, except: [:index] do
+      resources :goals, only: [:new, :create, :edit, :update, :destroy]
       resources :posts, only: [:new, :create, :edit, :update, :destroy] do
         resources :comments
       end
     end
   end
 
-
+  resources :journeys, only: [:index]
+  resources :goals, only: [:index, :show]
   resources :posts, only: [:index, :show]
 
   resources :relationships, only: [:create, :destroy]

@@ -27,18 +27,14 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <% if journey.posts.length > 0 %>
-              <p><%= journey.posts.all.last.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %></p>
-            <% end %>
-          </div>
-
-          <div class="row post">
-            <% if journey.posts.length > 0 %>
-              <p><%= journey.posts.all.last.content %></p>
-            <% end %>
-          </div>
-
+          <% if journey.posts.length > 0 %>
+            <div class="row">
+              Last post: <%= journey.posts.all.last.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %>
+            </div>
+            <div class="row post">
+                <p><%= journey.posts.all.last.content %></p>
+            </div>
+          <% end %>
         </div>
         <% end %>
     <% end %>

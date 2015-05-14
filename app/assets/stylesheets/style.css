@@ -273,7 +273,7 @@
   padding:30px 10px;
   margin: 10px 0;
   box-shadow:1px 1px 1px black;
-  background-color:#2A5DD1;
+  background-color:#7AC376;
   border-radius:3px;
 }
 
@@ -298,7 +298,6 @@
 }*/
 
 .deadline {
-  width:100%;
   border-bottom: black 1px solid;
 }
 
@@ -330,22 +329,17 @@
 
 
 /******************New Journey Page******************/
-
-
 #new_journey_form h2{
   text-align:center;
 }
 
-/******************Show-FollowPage******************/
-
 
 /******************CSS GRIDS******************/
-
 .row,
 .column {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  /*padding: 2px;*/
 }
 
 .row:before,

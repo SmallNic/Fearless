@@ -2,12 +2,15 @@ class JourneysController < ApplicationController
 
   load_and_authorize_resource #:except => [:create]
 
+  def index
+    render json: @journeys
+  end
+
   def show
     # @journey = Journey.find(params[:id])
     # authorize! :read, @journey
     @user = User.find(@journey.user_id)
     @posts = Post.all.slice(-5,3)
-
   end
 
   def new
@@ -16,7 +19,6 @@ class JourneysController < ApplicationController
   end
 
   def create
-    binding.pry
     # @journey = Journey.new(journey_params)
     @journey.user_id = current_user.id
     # authorize! :create, @journey
@@ -31,11 +33,9 @@ class JourneysController < ApplicationController
   def edit
     # @journey = Journey.find(params[:id])
     # authorize! :update, @journey
-
   end
 
   def update
-    binding.pry
     # @journey = Journey.find(params[:id])
     # authorize! :update, @journey
 
