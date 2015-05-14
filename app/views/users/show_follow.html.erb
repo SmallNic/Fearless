@@ -1,25 +1,27 @@
-<!-- def following
-  @title = "Following"
-  @user  = User.find(params[:id])
-  @users = @user.following.paginate(page: params[:page])
-  render 'show_follow'
-end
+<body id="welcome-body">
+<%= render "shared/header" %>
 
-def followers
-  @title = "Followers"
-  @user  = User.find(params[:id])
-  @users = @user.followers.paginate(page: params[:page])
-  render 'show_follow'
-end -->
+<div class="row" id="dashboard">
 
-<h2><%= @title %>:</h2>
-<!-- <p><%#= link_to ("Following #{current_user.following.count}"), following_user_path(current_user) %></p>
-<p><%#= link_to ("#{current_user.followers.count} Followers"), followers_user_path(current_user) %></p> -->
+  <!--               My Journey                      -->
+  <%= render "shared/my_journey_sidebar" %>
 
-<% if @users %>
-  <ul>
-  <% @users.each do |user| %>
-    <li><%= link_to user.alias, user_path(user) %></li>
-  <% end %>
-  </ul>
-<% end %>
+  <div  class="column column-6" id="center-col">
+    <div id="show-follow">
+      <h2><%= @title %></h2>
+      <!-- <p><%#= link_to ("Following #{current_user.following.count}"), following_user_path(current_user) %></p>
+      <p><%#= link_to ("#{current_user.followers.count} Followers"), followers_user_path(current_user) %></p> -->
+      <% if @users %>
+        <ul>
+        <% @users.each do |user| %>
+          <li><%= link_to user.alias, user_path(user) %></li>
+        <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+
+  <!--                Recent Posts                    -->
+  <%= render "shared/recent_posts_sidebar" %>
+
+</div>

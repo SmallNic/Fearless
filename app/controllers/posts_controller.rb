@@ -4,6 +4,10 @@ class PostsController < ApplicationController
 
   def index
     # @posts = Post.all
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @posts } #currently only supports json but we want it to support html using suffixes
+    end
   end
 
   def new

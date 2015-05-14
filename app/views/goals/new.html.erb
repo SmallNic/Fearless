@@ -1,6 +1,9 @@
+<body id="welcome-body">
+<%= render "shared/header" %>
+
 <h2>Set a New Goal</h2>
 
-<div class = "goal_form">
+<div id = "new_goal_form">
 <%= form_for [current_user, @journey, @goal], url: {action: "create"} do |f| %>
   <p>
     <%= f.label :details, "What is the smallest step you can take towards conquering your fear?"%><br>

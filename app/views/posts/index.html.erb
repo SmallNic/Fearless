@@ -1,8 +1,39 @@
+<body id="welcome-body">
+<%= render "shared/header" %>
 <h2>All Posts</h2>
 
-<% @posts.reverse.each do |post| %>
-  <%= gravatar_for(post.journey.user) %>
-  <p><%= post.journey.user.alias %></p>
-  <p><%= post.content %></p>
-  </p>Date posted: <%= post.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %></p>
-<% end %>
+<div class="row" id="dashboard">
+
+  <!--               My Journey                      -->
+  <%= render "shared/my_journey_sidebar" %>
+
+  <div  class="column column-9">
+    <h2 class="center-me">All Posts</h2>
+
+    <% @posts.reverse.each do |post| %>
+
+      <div class="postBox">
+        <div class="row">
+          <div class = "column column-1" style="margin-right:10px;">
+            <%= gravatar_for(post.journey.user, 80) %>
+          </div>
+          <div class = "column column-1"></div>
+          <div class = "column column-9">
+            <div class="row">
+              <h2><%= post.journey.user.alias %></h2>
+            </div>
+            <div class="row">
+              <p>Fear: <%= post.journey.fear %></p>
+            </div>
+          </div>
+      </div>
+      <div class="row post">
+        <p><%= post.content %></p>
+      </div>
+      <div class = "row">
+        </p>Date posted: <%= post.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

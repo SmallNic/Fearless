@@ -3,7 +3,7 @@
 
 <h2>Edit Your Journey</h2>
 
-<div class = "journey_form">
+<div id = "edit_journey_form">
 <%= form_for [current_user, @journey], url: {action: "update"} do |f| %>
 <!-- Can also be written as
 <%#= form_for user_journeys_path(current_user, @journey), url: {action: "create"} do |f| %> -->

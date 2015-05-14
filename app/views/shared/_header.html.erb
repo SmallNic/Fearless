@@ -6,8 +6,12 @@
         <%#= gravatar_for(current_user) %>
         <p id="current-user-alias"><%= current_user.alias %></p>
     </div> -->
-
-      <h1><%= link_to "be FEARLESS", '/', id: "fearless"  %></h1>
+    <h1 class="menu"><%= link_to "Home", '/' %> |
+    <% if current_user %>
+      <%= link_to 'Signout', destroy_user_session_path, :method => :delete %>
+    <% end %>
+    </h1>
+    <h1><%= link_to "be FEARLESS", '/', id: "fearless"  %></h1>
 
     <!-- <div id="signout">
       <%# if current_user %>

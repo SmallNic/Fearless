@@ -1,36 +1,69 @@
-<h2>All Users</h2>
+<body id="welcome-body">
+<%= render "shared/header" %>
+
+<div class="row" id="dashboard">
+
+<!-- <div id="user-index" class="row"> -->
+
+  <!--               My Journey                      -->
+  <%= render "shared/my_journey_sidebar" %>
 
 
-<% @users.each do |user| %>
 
-  <div class="follow-user">
-    <%= gravatar_for(user) %>
-    <p><%= user.alias %>'s Journey</p>
+  <!--               All Users                   -->
+  <div  class="column column-6">
+    <h2 class="center-me">All Users</h2>
+    <% @users.each do |user| %>
+      <% user.journeys.each do |journey| %>
 
-    <% user.journeys.each do |journey| %>
-      <div class="follow-journey">
-        <p>Fear: <%= journey.fear %></p>
-        <p>Background: <%= journey.details %></p>
+      <div class="follow-box">
+        <div class="row">
+          <div class = "column column-2">
+            <%= gravatar_for(user, 50) %>
+          </div>
+          <div class = "column column-9">
+            <div class="row">
+              <%= link_to user.alias, user_path(user) %>
+            </div>
+            <div class="row">
+              <p>Fear: <%= journey.fear %></p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <p><%= journey.posts.all.last.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %></p>
+        </div>
+
+        <div class="row post">
+          <p><%= journey.posts.all.last.content %></p>
+        </div>
+
+        <div class="row">
+          <% if current_user.following?(user) %>
+            <!-- Unfollow -->
+            <%= form_for(current_user.active_relationships.find_by(followed_id: user.id),
+                         html: { method: :delete }) do |f| %>
+              <%= f.submit "Unfollow" %>
+            <% end %>
+          <% else %>
+            <!-- Follow -->
+            <%= form_for(current_user.active_relationships.build) do |f| %>
+              <div><%= hidden_field_tag :followed_id, user.id %></div>
+              <%= f.submit "Follow" %>
+            <% end %>
+          <% end %>
+        </div>
+
       </div>
-    <% end %>
 
-    <div id="follow_form">
-    <% if current_user.following?(user) %>
-      <!-- Unfollow -->
-      <%= form_for(current_user.active_relationships.find_by(followed_id: user.id),
-                   html: { method: :delete }) do |f| %>
-        <%= f.submit "Unfollow" %>
-      <% end %>
-    <% else %>
-      <!-- Follow -->
-      <%= form_for(current_user.active_relationships.build) do |f| %>
-        <div><%= hidden_field_tag :followed_id, user.id %></div>
-        <%= f.submit "Follow" %>
       <% end %>
     <% end %>
-    </div>
-
-
+    <p class="center-me"><%= link_to 'See Followed Users', '/', class: "addBox" %></p>
   </div>
 
-<% end %>
+
+  <!--                Recent Posts                    -->
+  <%= render "shared/recent_posts_sidebar" %>
+
+
+</div>

@@ -2,10 +2,14 @@ class UsersController < ApplicationController
 
   def index
     @users = User.where.not(id:current_user.id)
+    @posts = Post.all.slice(-5,3)
+    @journeys = Journey.where(user_id:current_user.id)
   end
 
   def show
     @user = User.find(params[:id])
+    @posts = Post.all.slice(-5,3)
+
   end
 
   def following

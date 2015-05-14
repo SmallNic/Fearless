@@ -5,8 +5,9 @@ class JourneysController < ApplicationController
   def show
     # @journey = Journey.find(params[:id])
     # authorize! :read, @journey
-
     @user = User.find(@journey.user_id)
+    @posts = Post.all.slice(-5,3)
+
   end
 
   def new

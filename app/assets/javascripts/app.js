@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+  $("#scrap-journey").on("click", function(){
+    confirm('Are you sure you want to stop this journey?')
+  })
+
   $(".completeButton").on("click", function(){
     console.log("hi, you just clicked on the Complete button")
   })
@@ -19,8 +23,38 @@ $(document).ready(function(){
     }).fail(function(){
       console.log("failure")
     })
-
   })
+
+
+  centerColumn = $("#center-col")
+  rightColumn = $("#post-col")
+  allUsers = $("#allUsers")
+  allUsers.on("click", function(event){
+    console.log("hi, you just clicked on the allUsers button")
+  })
+
+  allPosts = $("#allPosts")
+  allPosts.on("click", function(event){
+    console.log("hi, you just clicked on the allPosts button")
+    $.ajax({
+      type: 'GET',
+      dataType: 'json',
+      url: "/posts"
+    }).done(function(response) {
+      console.log("response", response)
+      showAllPosts(response)
+    }).fail(function( response ){
+      console.log("failure")
+    })
+  })
+
+  function showAllPosts ( response ){
+
+
+
+  }
+
+  // centerColumn.css("background-color","red")
 
   // card.createInRails()
   //

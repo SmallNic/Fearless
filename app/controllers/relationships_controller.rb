@@ -6,13 +6,13 @@ class RelationshipsController < ApplicationController
     user = User.find(params[:followed_id])
     current_user.follow(user)
     @users = User.all
-    redirect_to '/users'
+    redirect_to '/'
   end
 
   def destroy
     user = Relationship.find(params[:id]).followed
     current_user.unfollow(user)
     @users = User.all
-    redirect_to '/users'
+    redirect_to '/'
   end
 end

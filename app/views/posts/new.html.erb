@@ -1,6 +1,8 @@
+<body id="welcome-body">
+<%= render "shared/header" %>
 <h2>Write a New Post</h2>
 
-<div class = "post_form">
+<div id = "new_post_form">
 <%= form_for [current_user, @journey, @post], url: {action: "create"} do |f| %>
   <p>
     <%= f.label :content, "Write Post"%><br>

@@ -101,6 +101,17 @@
   left:0;
 }
 
+.menu {
+  text-decoration:none;
+  font-size:2.5em;
+  color: #FFDF43;
+  text-shadow: 2px 2px 2px #4B77DD;
+  font-family: 'Permanent Marker', sans-serif;
+  position: absolute;
+  left: 2%;
+}
+
+
 #fearless{
   text-decoration:none;
   font-size:2.5em;
@@ -131,15 +142,13 @@
   left:0;
 }
 
-#dashboard h2{
-  text-align:center;
-}
 
 
 
 /******************Dashboard Column 1 - Journey******************/
 .journey-box {
   background-color:#C9D8FB;
+  box-shadow:1px 1px 1px black;
   padding:10px;
   margin: 10px 0;
   text-align: left;
@@ -160,10 +169,12 @@
 .addBox {
   height:50px;
   line-height:50px;
-  font-size:1.5em;
+  font-size:1.25em;
   margin:0px auto;
   padding: 10px 30px;
   border: rgba(255, 174, 106, 1) 1px solid;
+  box-shadow: 1px 1px 1px black;
+  width:65%;
   text-decoration: none;
   background-color:rgba(255, 174, 106, 1);
   color:black;
@@ -184,15 +195,11 @@
 /******************Dashboard Column 2 - Following******************/
 .follow-box {
   background-color:#C9D8FB;
+  box-shadow: 1px 1px 1px black;
   padding: 10px;
   margin: 10px;
   text-align:left;
   border-radius:3px;
-}
-
-
-#following-col{
-  padding:0px 20px;
 }
 
 /******************Dashboard Column 3 - Posts******************/
@@ -202,17 +209,35 @@
   margin: 10px 5px;
   text-align:left;
   border-radius:3px;
+  box-shadow: 1px 1px 1px black;
 }
 
 #post-col{
-  padding:0px 20px;
+  padding:0px 10px;
 }
 
 .post{
   background-color:white;
-  padding:0 10px;
+  padding:10px;
   /*font-family: 'Georgia', sans-serif;*/
   border-radius:3px;
+}
+
+
+/******************User Index Page******************/
+
+#user-index{
+  position: absolute;
+  top:329px;
+  left:0;
+}
+
+/******************User Show Page******************/
+
+#user-show{
+  position: absolute;
+  top:329px;
+  left:0;
 }
 
 /******************Journey Show Pages******************/
@@ -227,20 +252,37 @@
   text-align:left;
 }
 
-.posts {
-  width:80%;
-  border: black 1px solid;
-  box-shadow: 2px 2px 2px black;
+.postBox {
+  background-color:#C9D8FB;
+  box-shadow: 1px 1px 1px black;
   margin:10px 0;
   padding:10px 5px;
-  font-family:arial;
+  border-radius:3px;
+  width:95%;
 }
 
-#scrap-journey {
+.goalBoxIncomplete {
+  padding:30px 10px;
+  margin: 10px 0;
+  box-shadow:1px 1px 1px black;
+  background-color:#FFDF43;
+  border-radius:3px;
+}
+
+.goalBoxComplete {
+  padding:30px 10px;
+  margin: 10px 0;
+  box-shadow:1px 1px 1px black;
+  background-color:#2A5DD1;
+  border-radius:3px;
+}
+
+/*#scrap-journey {
+  background-color:red;
+
   margin-top:4%;
   padding:10px;
   border: black 1px solid;
-  background-color:pink;
   display:block;
   width:15%;
   text-align:center;
@@ -253,26 +295,7 @@
 
 #scrap-journey:hover {
   background-color:red;
-}
-
-.goalBoxIncomplete {
-  width:60%;
-  padding:30px 10px;
-  margin: 10px 0;
-  border: black 1px solid;
-  box-shadow:2px 2px 2px black;
-  background-color:pink;
-
-}
-
-.goalBoxComplete {
-  width:60%;
-  padding:30px 10px;
-  margin: 10px 0;
-  border: black 1px solid;
-  box-shadow:2px 2px 2px black;
-  background-color:lightblue;
-}
+}*/
 
 .deadline {
   width:100%;
@@ -293,22 +316,27 @@
   margin: 5px 0px;
 }
 
-/******************Follow Page******************/
-
+/******************New Journey Form Page******************/
+#new_journey_form,
+#new_post_form,
+#new_goal_form,
+#edit_journey_form,
+#edit_post_form,
+#edit_goal_form {
+  position: absolute;
+  top:325px;
+  left:0;
+}
 
 
 /******************New Journey Page******************/
 
-#new_journey_form{
-  position: absolute;
-  top:325px;
-  left:0;
-  width:100%;
-}
 
 #new_journey_form h2{
   text-align:center;
 }
+
+/******************Show-FollowPage******************/
 
 
 /******************CSS GRIDS******************/
@@ -403,4 +431,8 @@
 
 .center-me{
   text-align:center;
+}
+
+.gravatar {
+  margin:10px 0;
 }

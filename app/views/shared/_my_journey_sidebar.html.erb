@@ -1,0 +1,13 @@
+<div class="column column-3" id="journey-col">
+  <h2 class="center-me"><%= link_to "My Journeys", user_path(current_user) %></h2>
+  <p class="center-me"><%= link_to ("#{current_user.followers.count} Follower(s)"), followers_user_path(current_user) %></p>
+
+  <% current_user.journeys.each do |journey| %>
+    <div class="journey-box">
+      <p class="fear-journey">My Fear: <%= link_to journey.fear, user_journey_path(current_user, journey) %></p>
+      <p class="fear-post">Last Post: goal goal goal</p>
+    </div>
+  <% end %>
+
+  <%= link_to 'Start A New Journey', new_user_journey_path(current_user), method: :get, class: "addBox"  %>
+</div>

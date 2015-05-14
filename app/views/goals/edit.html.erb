@@ -1,6 +1,9 @@
+<body id="welcome-body">
+<%= render "shared/header" %>
+
 <h2>Edit Goal</h2>
 
-<div class = "goal_form">
+<div id = "edit_goal_form">
 <%= form_for [current_user, @journey, @goal], url: {action: "update"} do |f| %>
   <p>
     <%= f.label :details, "What is the smallest step you can take towards conquering your fear?"%><br>

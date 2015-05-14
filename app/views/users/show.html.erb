@@ -1,9 +1,25 @@
-<h2>User Show Page</h2>
-<p><%= @user.alias %>'s Journey's</p>
+<body id="welcome-body">
+<%= render "shared/header" %>
 
-<% @user.journeys.all.each do |journey| %>
+<div class="row" id="dashboard">
 
-  <p>Fear: <%= link_to journey.fear, user_journey_path(@user, journey) %></p>
-  <p>Background: <%= journey.details %></p>
-  <hr>
-<% end %>
+  <!--               My Journey                      -->
+  <%= render "shared/my_journey_sidebar" %>
+
+
+  <div  class="column column-6">
+    <h2><%= @user.alias %>'s Journeys</h2>
+
+    <% @user.journeys.all.each do |journey| %>
+      <div class="journey-box">
+        <p>Fear: <%= link_to journey.fear.capitalize, user_journey_path(@user, journey) %></p>
+        <p>Background: <%= journey.details %></p>
+    </div>
+    <% end %>
+  </div>
+
+  <!--                Recent Posts                    -->
+  <%= render "shared/recent_posts_sidebar" %>
+
+
+</div>

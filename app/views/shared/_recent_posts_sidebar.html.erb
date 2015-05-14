@@ -1,0 +1,53 @@
+<!--                Recent Posts                    -->
+<div class="column column-3" id="post-col">
+  <h2 class="center-me">Recent Posts</h2>
+
+  <% if @posts %>
+    <% @posts.reverse.each do |post| %>
+      <div class="dashboard-post">
+        <!-- style="border:1px solid black;" -->
+        <div class="row">
+          <div class = "column column-3">
+            <%= gravatar_for(post.journey.user, 50) %>
+          </div>
+          <div class = "column column-8">
+            <div class="row">
+              <%= link_to post.journey.user.alias.capitalize, user_path(post.journey.user) %>
+            </div>
+            <div class="row">
+              Fear: <%= post.journey.fear.capitalize %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <%= post.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %>
+        </div>
+        <div class="row post">
+          <%= post.content %>
+        </div>
+        <div class="row">
+          <div class = "column column-3">
+            <% if current_user.following?(post.journey.user) %>
+              <!-- Unfollow -->
+              <%= form_for(current_user.active_relationships.find_by(followed_id: post.journey.user.id),
+                           html: { method: :delete }) do |f| %>
+                <%= f.submit "Unfollow" %>
+              <% end %>
+            <% else %>
+              <!-- Follow -->
+              <%= form_for(current_user.active_relationships.build) do |f| %>
+                <div><%= hidden_field_tag :followed_id, post.journey.user.id %></div>
+                <%= f.submit "Follow" %>
+              <% end %>
+            <% end %>
+          </div>
+          <!-- <div class = "column column-3">
+            <button class="support-button">Support</button>
+          </div> -->
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <p class="center-me"><%= link_to 'See all posts', posts_path, class: "addBox", id: "allPosts" %></p>
+</div>

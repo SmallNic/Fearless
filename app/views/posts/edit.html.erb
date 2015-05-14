@@ -1,4 +1,6 @@
-<div class = "post_form">
+<body id="welcome-body">
+<%= render "shared/header" %>
+<div id = "edit_post_form">
   <%= form_for [current_user, @journey, @post], url: {action: "update"} do |f| %>
   <p>
     <%= f.label :content, "Write Post"%><br>
