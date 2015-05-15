@@ -24,15 +24,15 @@ end
 # Journeys
 User.all.each do |user|
   fear = fears.sample
-  details = Faker::Lorem.sentence(3)
-  journey = Journey.create!(fear: fear, details:details)
+  details = Faker::Lorem.paragraph
+  journey = Journey.create!(fear: fear, details:details, num_supporters:0)
   journey.user_id = user.id
   journey.save
 end
 
 #Goals
 Journey.all.each do |journey|
-  details = Faker::Lorem.sentence(2)
+  details = Faker::Lorem.paragraph
   goal = Goal.create!(details:details, isAchieved:false)
   goal.journey_id = journey.id
   goal.save
@@ -40,11 +40,11 @@ end
 
 #Posts
 Journey.all.each do |journey|
-  content = Faker::Lorem.sentence(4)
+  content = Faker::Lorem.paragraph
   post = Post.create!(content:content)
   post.journey_id = journey.id
   post.save
-  content = Faker::Lorem.sentence(4)
+  content = Faker::Lorem.paragraph
   post = Post.create!(content:content)
   post.journey_id = journey.id
   post.save

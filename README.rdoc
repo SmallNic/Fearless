@@ -1,31 +1,29 @@
-== README
+Overview
+Often our fears isolate and debilitate us if we don't address them, but if we talk about them and share them, we move closer to conquering them.I want to enable people to tackle their fears.
 
-be Fearless
-When a user visits the site he has the option to sign up or log in.
+My app will allow people to share their fears anonymously, start a journey to conquer that fear, and document their progress. They will also be able to follow other users' journeys, comment on it and offer support.
 
-Devise gem is used to handle user authentication
+User Stories
+-A user should be able to provide an alias.
+-A user should be able to create an account.
+-A user should be able to share a sentence-long summary of their fear.
+-A user should be able to provide more details and background related to their fear.
+-A user should be able to choose a time frame in which to tackle their fear.
+-A user should be able to document their progress through posts.
+-A user should be able to edit/delete a journey.
+-A user should be able to edit/delete a post.
+-A user should be able to edit/delete a goal.
+-A user should be able to follow other users.
+-A user should be able to create a dashboard that lists their journeys as well the journeys they follow.
 
+To Run App:
 
+  From Cmd Line
+  $ cd Fearless
+  $ bundle install
+  $ rake db:create db:migrate db:seed
+  $ rails s
 
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+  From Web Browser:
+  http://localhost:3000
+  Create an account and see what other users have written.

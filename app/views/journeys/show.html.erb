@@ -15,6 +15,9 @@
       <div class = "column column-9">
         <div class="row">
           <h2><%= @user.alias.capitalize %>'s Journey<h2>
+          <% if @user != current_user %>
+            <button class="support" journeyID="<%= @journey.id %>">Support <%= @user.alias.capitalize %>'s Journey</button>
+          <% end %>
         </div>
         <div class="row">
           <% if can? :update, @journey %>
@@ -27,9 +30,7 @@
           <% end %>
         </div>
         <div class="row">
-          <!-- <% if @user != current_user %>
-            <button class="support-button">Support</button>
-          <% end %> -->
+
         </div>
       </div>
     </div>
@@ -39,11 +40,13 @@
     </div>
 
 
-    <!-- <% if @journey.num_supporters %>
-      <p><%= @journey.num_supporters %> people are supporting you.</p>
-    <% else %>
-      <p>0 people are supporting you.</p>
-    <% end %> -->
+    <% if @journey.num_supporters %>
+      <% if @user != current_user %>
+        <p><%= @journey.num_supporters %> people are supporting <%= @user.alias.capitalize %> on this journey.</p>
+      <% else %>
+        <p><%= @journey.num_supporters %> people are supporting you on this journey.</p>
+      <% end %>
+    <% end %>
 
     <h2>Goals:</h2>
     <% @journey.goals.each do |goal| %>

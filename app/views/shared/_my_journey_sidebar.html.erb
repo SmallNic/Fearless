@@ -1,5 +1,5 @@
 <div class="column column-3" id="journey-col">
-  <h2 class="center-me"><%= link_to "My Journeys", user_path(current_user) %></h2>
+  <h2 class="center-me"><%= link_to "#{current_user.alias.capitalize}'s Journeys", user_path(current_user) %></h2>
   <p class="center-me"><%= link_to ("#{current_user.followers.count} Follower(s)"), followers_user_path(current_user) %></p>
 
   <% current_user.journeys.each do |journey| %>

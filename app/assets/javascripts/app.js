@@ -65,19 +65,30 @@ $(document).ready(function(){
     confirm('Are you sure you want to stop this journey?')
   })
 
-  $(".support-button").on("click", function(){
+/********************* Support Button *********************/
+
+  $(".support").on("click", function( event ){
+    event.preventDefault()
     console.log("hi, you just clicked on the Support button")
-    var supporter = $("#current-user-alias").html()
-    console.log(supporter, "supports you")
+    journeyID = $(this).attr("journeyID")
+    var userID;
+    var numSupporters;
+    for (var i=0; i < journeys.length; i++){
+      if (journeyID == journeys[i].id){
+        userID = journeys[i].user_id
+        numSupporters = journeys[i].num_supporters
+      }
+    }
+
     $.ajax({
-      type:"POST",
-      dataType: "json",
-      data: supporter,
-      url: "http://localhost:3000/journeys/"
-    }).done(function(){
+      type: 'PATCH',
+      dataType: 'json',
+      data: {journey:{num_supporters: (numSupporters+1)}},
+      url: "/users/" + userID +"/journeys/" + journeyID
+    }).done(function() {
       console.log("success")
-    }).fail(function(){
-      console.log("failure")
+    }).fail(function( response ){
+      console.log("failure:", response)
     })
   })
 
