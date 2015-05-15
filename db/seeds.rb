@@ -5,7 +5,9 @@ timeFrames = [3,5,7,14,30]
 
 
 # Users
+photo = Faker::Avatar.image("", "100x100", "jpg")
 User.create!(alias: "Nic",
+             photo_url: photo,
              email: "nas231@nyu.edu",
              password:              "nicholas",
              password_confirmation: "nicholas",
@@ -15,7 +17,9 @@ User.create!(alias: "Nic",
 10.times do |n|
   email = "email#{n+1}@gmail.com"
   password = "nicholas"
-  newUser = User.create!(alias: Faker::Name.first_name,
+  aliasName = Faker::Name.first_name
+  newUser = User.create!(alias: aliasName,
+              photo_url: Faker::Avatar.image(aliasName, "80x80", "jpg"),
               email: email,
               password: password,
               password_confirmation: password,

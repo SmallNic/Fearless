@@ -316,7 +316,6 @@
 }
 
 /******************New Journey Form Page******************/
-#new_journey_form,
 #new_post_form,
 #new_goal_form,
 #edit_journey_form,
@@ -328,9 +327,9 @@
 
 
 /******************New Journey Page******************/
-#new_journey_form h2{
+/*#new_journey_form h2{
   text-align:center;
-}
+}*/
 
 
 /******************CSS GRIDS******************/
@@ -424,6 +423,7 @@
 
 .center-me{
   text-align:center;
+  margin: 0 auto;
 }
 
 .gravatar {

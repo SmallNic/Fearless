@@ -13,6 +13,7 @@ class PostsController < ApplicationController
   def new
     # @post = Post.new
     @journey = Journey.find(params[:journey_id])
+    @posts = Post.all.slice(-5,3)
   end
 
   def create

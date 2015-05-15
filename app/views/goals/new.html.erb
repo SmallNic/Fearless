@@ -1,25 +1,34 @@
 <body id="welcome-body">
-<%= render "shared/header" %>
+  <%= render "shared/header" %>
 
-<h2>Set a New Goal</h2>
+  <div class="row" id="dashboard">
 
-<div id = "new_goal_form">
-<%= form_for [current_user, @journey, @goal], url: {action: "create"} do |f| %>
-  <p>
-    <%= f.label :details, "What is the smallest step you can take towards conquering your fear?"%><br>
-    <%= f.text_field :details, :size=>"52x6" %>
-  </p>
+    <!--               My Journey                      -->
+    <%= render "shared/my_journey_sidebar" %>
 
-  <p>
-    <%= f.label :deadline, "How many days do you want to give yourselve to reach this goal?"%><br>
-    <%= f.collection_select :deadline, @timeFrames, :to_i, :to_s, :size=>"52" %>
-  </p>
+    <div  class="column column-6">
+      <h2>Set a New Goal</h2>
 
-  <%= f.hidden_field :isAchieved, {value:false} %>
+      <%= form_for [current_user, @journey, @goal], url: {action: "create"} do |f| %>
+      <p>
+        <%= f.label :details, "What is the smallest step you can take towards conquering your fear?"%><br>
+        <%= f.text_field :details, :size=>"52x6" %>
+      </p>
 
-  <p>
-    <%= f.submit value: "Submit"%>
-  </p>
+      <p>
+        <%= f.label :deadline, "How many days do you want to give yourselve to reach this goal?"%><br>
+        <%= f.collection_select :deadline, @timeFrames, :to_i, :to_s, :size=>"52" %>
+      </p>
 
-</div>
-<% end %>
+      <%= f.hidden_field :isAchieved, {value:false} %>
+
+      <p>
+        <%= f.submit value: "Submit"%>
+      </p>
+
+      <% end %>
+    </div>
+
+    <!--                Recent Posts                    -->
+    <%= render "shared/recent_posts_sidebar" %>
+  </div>

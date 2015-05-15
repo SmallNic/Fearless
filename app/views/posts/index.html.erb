@@ -15,7 +15,8 @@
       <div class="postBox">
         <div class="row">
           <div class = "column column-1" style="margin-right:10px;">
-            <%= gravatar_for(post.journey.user, 80) %>
+            <!-- <%= gravatar_for(post.journey.user, 80) %> -->
+            <img src="<%= post.journey.user.photo_url %>" />
           </div>
           <div class = "column column-1"></div>
           <div class = "column column-9">

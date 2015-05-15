@@ -19,7 +19,9 @@
       <div class="follow-box">
         <div class="row">
           <div class = "column column-2">
-            <%= gravatar_for(user, 50) %>
+            <!-- <%= gravatar_for(user, 50) %> -->
+            <img width="50" height="50" src="<%= user.photo_url %>" />
+
           </div>
           <div class = "column column-9">
             <div class="row">

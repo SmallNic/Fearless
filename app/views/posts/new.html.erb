@@ -1,17 +1,25 @@
 <body id="welcome-body">
-<%= render "shared/header" %>
-<h2>Write a New Post</h2>
+  <%= render "shared/header" %>
+  <div class="row" id="dashboard">
 
-<div id = "new_post_form">
-<%= form_for [current_user, @journey, @post], url: {action: "create"} do |f| %>
-  <p>
-    <%= f.label :content, "Write Post"%><br>
-    <%= f.text_area :content, :size=>"80x10" %>
-  </p>
+    <!--               My Journey                      -->
+    <%= render "shared/my_journey_sidebar" %>
 
-  <p>
-    <%= f.submit value: "Submit"%>
-  </p>
+    <div  class="column column-6">
+      <h2>Write a New Post</h2>
 
-</div>
-<% end %>
+        <%= form_for [current_user, @journey, @post], url: {action: "create"} do |f| %>
+        <p>
+          <%= f.label :content, "Write Post"%><br>
+          <%= f.text_area :content, :size=>"80x10" %>
+        </p>
+
+        <p>
+          <%= f.submit value: "Submit"%>
+        </p>
+        <% end %>
+    </div>
+
+    <!--                Recent Posts                    -->
+    <%= render "shared/recent_posts_sidebar" %>
+  </div>

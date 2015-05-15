@@ -10,7 +10,9 @@
   <div  class="column column-6">
     <div class="row">
       <div class = "column column-2 gravatar">
-        <%= gravatar_for(@user, 80) %>
+        <img src="<%= @user.photo_url %>" />
+
+        <!-- <%= gravatar_for(@user, 80) %> -->
       </div>
       <div class = "column column-9">
         <div class="row">

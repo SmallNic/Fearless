@@ -1,20 +1,34 @@
 <div class="column column-3" id="journey-col">
-  <h2 class="center-me"><%= link_to "#{current_user.alias.capitalize}'s Journeys", user_path(current_user) %></h2>
-  <p class="center-me"><%= link_to ("#{current_user.followers.count} Follower(s)"), followers_user_path(current_user) %></p>
+  <div class="row">
+    <div class="column column-4">
+      <img src="<%= current_user.photo_url %>" />
+    </div>
+    <div class="column column-8">
+      <div class="row">
+        <h2 class="center-me"><%= link_to "#{current_user.alias.capitalize}'s Journeys", user_path(current_user) %></h2>
+      </div>
+      <div class="row">
+        <p class="center-me"><%= link_to ("#{current_user.followers.count} Follower(s)"), followers_user_path(current_user) %></p>
+      </div>
 
+    </div>
+</div>
   <% current_user.journeys.each do |journey| %>
     <div class="journey-box">
       <div class="row">
         My Fear: <%= link_to journey.fear, user_journey_path(current_user, journey) %>
       </div>
+      <% if journey.posts.length > 0 %>
       <div class="row">
         Last Post: <%= journey.posts.last.created_at.localtime.strftime("%B %d, %Y %I:%M %p") %>
       </div>
       <div class="row">
         <div class="post"><%= journey.posts.last.content %></div>
       </div>
+      <% end %>
+
     </div>
   <% end %>
 
-  <%= link_to 'Start A New Journey', new_user_journey_path(current_user), method: :get, class: "addBox"  %>
+  <%= link_to 'Start A New Journey', new_user_journey_path(current_user), class: "addBox"  %>
 </div>

@@ -15,6 +15,8 @@ class GoalsController < ApplicationController
 
     @journey = Journey.find(params[:journey_id])
     @timeFrames = [3,5,7,14,30]
+    @posts = Post.all.slice(-5,3)
+
   end
 
   def create

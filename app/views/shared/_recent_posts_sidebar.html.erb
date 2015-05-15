@@ -8,7 +8,8 @@
         <!-- style="border:1px solid black;" -->
         <div class="row">
           <div class = "column column-3">
-            <%= gravatar_for(post.journey.user, 40) %>
+            <!-- <%= gravatar_for(post.journey.user, 40) %> -->
+            <img width="40" height="40" src="<%= post.journey.user.photo_url %>" />
           </div>
           <div class = "column column-8">
             <div class="row">

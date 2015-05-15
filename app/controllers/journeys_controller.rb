@@ -16,6 +16,8 @@ class JourneysController < ApplicationController
   def new
     # @journey = Journey.new
     # authorize! :create, @journey
+    @posts = Post.all.slice(-5,3)
+
   end
 
   def create
