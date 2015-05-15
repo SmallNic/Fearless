@@ -4,7 +4,6 @@ class Journey < ActiveRecord::Base
   has_many :posts,   dependent: :destroy
   has_many :follows,   dependent: :destroy
 
-
   validates :fear,
     presence: true,
     length: { maximum: 50, minimum: 2 }
