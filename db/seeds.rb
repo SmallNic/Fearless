@@ -1,5 +1,6 @@
 fears = ["Death","Public speaking","Heights","Darkness","Intimacy", "Failure",
         "Rejection","Spiders","Success","Judgment","Embarrassment","Abandonment","Loss","Flying","Dogs","Dentists","Snakes","Needles","Being alone", "Clowns", "Change", "Germs","Crowds", "Thunder", "Hospitals", "Birds","Ghosts", "Bees", "Small spaces"]
+timeFrames = [3,5,7,14,30]
 
 
 
@@ -32,8 +33,9 @@ end
 
 #Goals
 Journey.all.each do |journey|
+  deadline =  Time.now + (timeFrames.sample * 24 * 60 * 60)
   details = Faker::Lorem.paragraph
-  goal = Goal.create!(details:details, isAchieved:false)
+  goal = Goal.create!(details:details, isAchieved:false, deadline:deadline)
   goal.journey_id = journey.id
   goal.save
 end

@@ -1,23 +1,32 @@
 <body id="welcome-body">
-<%= render "shared/header" %>
+  <%= render "shared/header" %>
+  <div class="row" id="dashboard">
 
-<h2>Edit Goal</h2>
 
-<div id = "edit_goal_form">
-<%= form_for [current_user, @journey, @goal], url: {action: "update"} do |f| %>
-  <p>
-    <%= f.label :details, "What is the smallest step you can take towards conquering your fear?"%><br>
-    <%= f.text_field :details, :size=>"52x6" %>
-  </p>
+    <!--               My Journey                      -->
+    <%= render "shared/my_journey_sidebar" %>
 
-  <p>
-    <%= f.label :deadline, "By when?"%><br>
-    <%= f.collection_select :deadline, @timeFrames, :to_i, :to_s, :size=>"52" %>
-  </p>
 
-  <p>
-    <%= f.submit value: "Submit"%>
-  </p>
+    <div  class="column column-6">
+      <h2>Edit Goal</h2>
 
-</div>
-<% end %>
+      <%= form_for [current_user, @journey, @goal], url: {action: "update"} do |f| %>
+      <p>
+        <%= f.label :details, "What is the smallest step you can take towards conquering your fear?"%><br>
+        <%= f.text_field :details, :size=>"52x6" %>
+      </p>
+
+      <p>
+        <%= f.label :deadline, "By when?"%><br>
+        <%= f.collection_select :deadline, @timeFrames, :to_i, :to_s, :size=>"52" %>
+      </p>
+
+      <p>
+        <%= f.submit value: "Submit"%>
+      </p>
+      <% end %>
+    </div>
+
+    <!--                Recent Posts                    -->
+    <%= render "shared/recent_posts_sidebar" %>
+  </div>

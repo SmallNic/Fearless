@@ -34,7 +34,7 @@ class GoalsController < ApplicationController
   def edit
     # @goal = Goal.find(params[:id])
     @timeFrames = [3,5,7,14,30]
-
+    @posts = Post.all.slice(-5,3)
   end
 
   def update

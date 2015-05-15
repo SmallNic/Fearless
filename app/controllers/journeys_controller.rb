@@ -33,12 +33,12 @@ class JourneysController < ApplicationController
   def edit
     # @journey = Journey.find(params[:id])
     # authorize! :update, @journey
+    @posts = Post.all.slice(-5,3)
   end
 
   def update
     # @journey = Journey.find(params[:id])
     # authorize! :update, @journey
-    binding.pry
     @journey.update!(journey_params)
     redirect_to(user_journey_path(current_user, @journey))
   end

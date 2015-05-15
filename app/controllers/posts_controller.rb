@@ -30,6 +30,7 @@ class PostsController < ApplicationController
 
   def edit
     # @post = Post.find(params[:id])
+    @posts = Post.all.slice(-5,3)
   end
 
   def update

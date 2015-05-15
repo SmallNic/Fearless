@@ -1,26 +1,34 @@
 <body id="welcome-body">
-<%= render "shared/header" %>
+  <%= render "shared/header" %>
+  <div class="row" id="dashboard">
 
-<h2>Edit Your Journey</h2>
 
-<div id = "edit_journey_form">
-<%= form_for [current_user, @journey], url: {action: "update"} do |f| %>
-<!-- Can also be written as
-<%#= form_for user_journeys_path(current_user, @journey), url: {action: "create"} do |f| %> -->
-  <!-- <%# hidden_field_tag "user_id", current_user.id %> -->
-  <p>
-    <%= f.label :fear, "What are you afraid of?"%><br>
-    <%= f.text_field :fear, :size=>"52" %>
-  </p>
+    <!--               My Journey                      -->
+    <%= render "shared/my_journey_sidebar" %>
 
-  <p>
-    <%= f.label :details, "Please share any relevant details about this fear. For example, when it started, times you've attempted to conquer it, etc."%><br>
-    <%= f.text_area :details, :size=>"52x6" %>
- </p>
+    <div  class="column column-6">
+      <h2>Edit Your Journey</h2>
 
-  <p>
-    <%= f.submit value: "Submit"%>
-  </p>
+      <%= form_for [current_user, @journey], url: {action: "update"} do |f| %>
+      <!-- Can also be written as
+      <%#= form_for user_journeys_path(current_user, @journey), url: {action: "create"} do |f| %> -->
+      <!-- <%# hidden_field_tag "user_id", current_user.id %> -->
+      <p>
+        <%= f.label :fear, "What are you afraid of?"%><br>
+        <%= f.text_field :fear, :size=>"52" %>
+      </p>
 
-</div>
-<% end %>
+      <p>
+        <%= f.label :details, "Please share any relevant details about this fear. For example, when it started, times you've attempted to conquer it, etc."%><br>
+        <%= f.text_area :details, :size=>"52x6" %>
+      </p>
+
+      <p>
+        <%= f.submit value: "Submit"%>
+      </p>
+      <% end %>
+    </div>
+
+    <!--                Recent Posts                    -->
+    <%= render "shared/recent_posts_sidebar" %>
+  </div>

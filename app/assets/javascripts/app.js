@@ -21,10 +21,13 @@ $(document).ready(function(){
     console.log("failure")
   })
 
+  /********************* Completed Button *********************/
+
   var goalBoxComplete = $(".goalBoxComplete")
   var goalBoxIncomplete = $(".goalBoxIncomplete")
 
   $(".completeButton").on("click", function( event ){
+    console.log("hi")
     event.preventDefault()
     id = $(this).attr("id")
     $.ajax({

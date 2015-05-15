@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   end
 
   def following
-    # binding.pry
     @title = "Following"
     @user  = User.find(params[:id])
     @users = @user.following
@@ -21,7 +20,6 @@ class UsersController < ApplicationController
   end
 
   def followers
-    # binding.pry
     @title = "Followers"
     @user  = User.find(params[:id])
     @users = @user.followers
